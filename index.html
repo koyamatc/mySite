@@ -1,15 +1,154 @@
 ---
-layout: default
+
 ---
-<div class="row">
-  <div class="col-sm-12">
-    <h3 class="text-white">Blog Posts</h3>
-    <hr>
-    <ul class="text-white post-list">
-      {% for post in site.posts %}
-        <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.postTitle }}</a>
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>koyamatch.com</title>
+  <!-- Le styles -->
+  <link href="/css/bootstrapx.css" rel="stylesheet">
+  <link href="/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <link href="/css/animate.css" rel="stylesheet">
+  <link href="index.css" rel="stylesheet">
+  
+</head>
+<body>
+  <div class="container">
+    
+    <div class="row hidden-xs">
+      <div class="col-sm-3 col-md-3">
+        <div id="item1" class="item">item</div>
+      </div>
+      <div class="col-sm-3 col-md-3">
+        <div id="item2" class="item">item</div>
+      </div>
+      <div class="col-sm-3 col-md-3">
+        <div id="item3" class="item">item</div>
+      </div>
+      <div class="col-sm-3 col-md-3">
+        <div id="item4" class="item">item</div>
+      </div>
+    </div><!--/row-->
+
+    <div class="row">
+      <div class="col-sm-3 col-md-3 hidden-xs">
+        <div id="item9" class="item">item</div>
+        <div id="item10" class="item">item</div>
+      </div>
+      <div class="col-sm-6 col-md-6">
+        <div class="row">
+           <div id="logo" class="text-center"><span>koyamatch.com</span></div>
+        </div>
+        <div class="row">
+          <h3 id="tlt" class="text-center">
+            <ul class="texts">
+              <li data-out-effect="fadeOut" data-out-shuffle="true">
+                ❀❀❀桜の季節です❀❀❀!!</li>   
+              <li data-in-effect="rotateInDownLeft">
+                Welcome to koyamatch.com!!</li>
+              <li>
+              　　一生勉強ですね
+              </li>  
+            </ul>
+            <br><br>
+          </h3>          
+        </div>
+        <div class="row">
+        </div>
+      </div>
+      <div class="col-sm-3 col-md-3 hidden-xs">
+        <div id="item11" class="item">item</div>
+        <div id="item12" class="item">item</div>
+      </div>
+    </div><!--/row-->
+
+    <div class="row hidden-xs">
+      <div class="col-sm-3 col-md-3">
+        <div id="item5" class="item">item</div>
+      </div>
+      <div class="col-sm-3 col-md-3">
+        <div id="item6" class="item">item</div>
+      </div>
+      <div class="col-sm-3 col-md-3">
+        <div id="item7" class="item">item</div>
+      </div>
+      <div class="col-sm-3 col-md-3">
+        <div id="item8" class="item">item</div>
+      </div>
+    </div><!--/row-->
+
+    <div class="row menu-row">
+      <div class="col-sm-4 col-md-2"><span id="m1"  class="btn btn-md btn-info btn-block"></span></div>
+      <div class="col-sm-4 col-md-2"><span id="m2"  class="btn btn-md btn-info btn-block"></span></div>
+      <div class="col-sm-4 col-md-2"><span id="m3"  class="btn btn-md btn-info btn-block"></span></div>
+      <div class="col-sm-4 col-md-2"><span id="m4"  class="btn btn-md btn-info btn-block"></span></div>
+      <div class="col-sm-4 col-md-2"><span id="m5"  class="btn btn-md btn-info btn-block"></span></div>
+      <div class="col-sm-4 col-md-2"><span id="m6" class="btn btn-md btn-info btn-block"></span></div>
+    </div><!--/row-->
+
+    <div class="row visible-xs">
+      <div class="col-xs-12">
+        <div id="itemxs1" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs2" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs3" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs4" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs5" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs6" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs7" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs8" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs9" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs10" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs11" class="itemxs">item</div>
+      </div>
+      <div class="col-xs-12">
+        <div id="itemxs12" class="itemxs">item</div>
+      </div>
+    </div><!--/row-->
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 class="text-white">Recent Posts</h3>
+        <hr>
+        <ul class="text-white post-list">
+          {% for post in site.posts %}
+            <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.postTitle }}</a>
             </li>
-      {% endfor %}
-    </ul>
-  </div>
-</div> 
+          {% endfor %}
+        </ul>
+      </div>
+    </div> 
+    {% include footer.html %}
+
+  </div><!-- container -->
+
+  <!-- JavaScript Libraries -->
+  <script src="../js/jquery.js"></script>
+  <script src="../js/bootstrap.js"></script>
+  <script src="../js/jquery.lettering-0.6.1.min.js"></script>
+  <script src="../js/jquery.textillate.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

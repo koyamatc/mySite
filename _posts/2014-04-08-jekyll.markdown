@@ -1,6 +1,8 @@
 ---
 layout: post
-title: install Jekyll
+postTitle: install Jekyll
+date:      2014-04-08 12:00:00
+categories: post jekyll
 ---
 ##jekyll
 **jekyll**を導入してみました。
