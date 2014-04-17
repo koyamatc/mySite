@@ -1,4 +1,5 @@
 ---
+title: 投稿記事
 layout:    post
 postTitle: Net Coffee Shop Demo
 date:      2014-04-03 12:00:00
