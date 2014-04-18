@@ -2,3 +2,4 @@ _site
 *.markdown
 aninate.css
 bootstrap*.css
+img/
