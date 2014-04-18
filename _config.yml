@@ -2,6 +2,6 @@ name: koyamatch.com
 markdown: redcarpet
 pygments: true
 encoding: utf-8
-timezone: Asia/Tokyo
 domain: http://koyamatch.com
 paginate: 5
+timezone: Asia/Tokyo
