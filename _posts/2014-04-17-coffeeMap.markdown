@@ -2,7 +2,7 @@
 title: 更新情報
 layout: post
 postTitle: コーヒーマップ更新
-date:      2014-04-16 15:45:00
+date:      2014-04-17 15:45:00
 categories: update
 ---
 コーヒーマップを更新しました
