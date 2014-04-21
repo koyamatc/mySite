@@ -2,7 +2,6 @@
 title: 投稿記事
 layout: post
 postTitle: install Jekyll
-date:      2014-04-08 12:00:00
 categories: post jekyll
 ---
 ##jekyll

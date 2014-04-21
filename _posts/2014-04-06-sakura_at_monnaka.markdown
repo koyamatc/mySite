@@ -2,7 +2,6 @@
 title: 投稿記事
 layout: post
 postTitle: 桜@門前仲町
-date:      2014-04-06 17:30:00
 categories: post Living
 ---
 久しぶりに花見をしました。
