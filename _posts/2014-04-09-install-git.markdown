@@ -2,7 +2,6 @@
 title: 投稿記事
 layout: post
 postTitle: install Git
-date:      2014-04-09 11:00:00
 categories: post Git
 ---
 バージョン管理システムの**git**を導入してみました。
