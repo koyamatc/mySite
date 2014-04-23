@@ -36,7 +36,7 @@ categories: post composition
 <script type="text/javascript">
 
 var bgStatus = true;	// 背景の状態
-var bgColor = "#ccc"; // 背景色
+var bgColor = "#fff"; // 背景色
 
 /** svg空間作成 */
 var svgContainer =  d3.select("#svg")
