@@ -7,19 +7,16 @@ categories: post composition
 
 <div class="row">
   <div class="col-sm-7">
-    <table>
-      <tr>
-        <td id="messageBox"></td>
-        <td id="elapsedTime"></td>
-      </tr>
-    </table>
+    <div class="col-sm-6">
+      <p id="messageBox"></p>
+    </div>
+    <div class="col-sm-6">
+      <p id="elapsedTime"></p>
+    </div>
 
     <canvas width="600" height="400">Canvas 要素をサポートしていません - ブラウザをアップグレードしてください。</canvas><br>
     <div class="col-sm-6">
       <button type="button" id="resetButton">リセット</button>  
-    </div>
-    <div class="col-sm-6">
-      <button type="button" id="lightenButton">明るく</button>    
     </div>
   </div>
   <div class="col-sm-5">
@@ -28,9 +25,9 @@ categories: post composition
     </p>
 
     <a href="http://msdn.microsoft.com/ja-jp/library/jj635756(v=vs.85).aspx">HTML5 を使ってマンデルブロ集合を調べる方法</a>
-    
+    <br>
     <p>
-    早速試してみました・・
+    色付けをして試してみました・・
     </p>
   </div>	
 </div>
@@ -80,7 +77,6 @@ categories: post composition
       var canvasHeight = canvas.height;      
       var ctx = canvas.getContext('2d');
       
-      document.getElementsByTagName('table')[0].width = canvasWidth; // Make the table's width the same as the canvas's width. 
       document.getElementById('messageBox').innerHTML = DEFAULT_MESSAGE;            
 
       globals.canvas = canvas;
@@ -119,7 +115,6 @@ categories: post composition
       } // if-else
             
       document.getElementById('resetButton').addEventListener('click', handleResetButton, false);
-      document.getElementById('lightenButton').addEventListener('click', handleLightenButton, false);    
       
       ctx.fillStyle = "rgba(255, 0, 0, 0.3)"; // The color and opacity of the zoom box. This is what gets saved when calling ctx.save().          
  
@@ -351,18 +346,6 @@ categories: post composition
     
     /*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
     
-    function handleLightenButton() {
-    /* 
-      This creates a value (factor) such that black (0) stays black and the lightest gray value in the image becomes white (255). Thus, clicking the 
-      Lighten button can remove mathematical meaning of the (proper) grayscale but can make dark images more visible.
-    */
-      var grayscaleFactor = 255 / globals.maxPixelGrayscaleValue; // For the canvas element, 255 is white, 0 is black.
-
-      window.location.hash = globals.ReMax + "," + globals.ReMin + "," + globals.ImMax + "," + globals.ImMin + "," + grayscaleFactor; // This invokes handleHashChange which, among other things, is responsibile for drawing the Mandelbrot set.
-    } // handleResetButton
-    
-    /*----------------------------------------------------------------------------------------------------------------------------------------------------------*/
-
     function initializeWebWorkers(webWorkerJsPath) {
       if (globals.coarseDetailWorker) {
         globals.coarseDetailWorker.terminate();      

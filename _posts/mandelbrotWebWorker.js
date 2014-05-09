@@ -1,7 +1,3 @@
----
-categories: post composition
----
-
 /* 
   Recall that a Web Worker JavaScript file has no access to the DOM and, in general, cannot receive DOM related objects.  
 */
