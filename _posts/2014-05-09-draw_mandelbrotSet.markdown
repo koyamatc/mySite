@@ -27,8 +27,9 @@ categories: post composition
     <a href="http://msdn.microsoft.com/ja-jp/library/jj635756(v=vs.85).aspx">HTML5 を使ってマンデルブロ集合を調べる方法</a>
     <br>
     <p>
-    色付けをして試してみました・・
+    元はグレースケールだったので、色付けをして試してみました・・
     </p>
+    <p>集合のふちをズームしていくと、いろいろなパターンの図形が見えてきます。</p>
   </div>	
 </div>
 
