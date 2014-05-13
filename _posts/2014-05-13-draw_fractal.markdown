@@ -8,18 +8,73 @@ categories: post composition
 <div class="row">
   <div class="col-sm-6">
     <div id="svg"></div>
-    <div class="col-sm-3"><button class="btn btn-info" id="koch">コッホ</button></div>
-    <div class="col-sm-3"><button class="btn btn-info" id="tree">樹木</button></div>
-    <div class="col-sm-3"><button class="btn btn-info" id="dragon">ドラゴン</button></div>
+    <div class="col-sm-3">
+      <button class="btn btn-info" data-bind="click:koch">コッホ曲線</button>
+    </div>
+    <div class="col-sm-3">
+      <button class="btn btn-info" data-bind="click:tree">樹木曲線</button>
+    </div>
+    <div class="col-sm-3">
+      <button class="btn btn-info" data-bind="click:dragon">ドラゴン曲線</button>
+    </div>
     <div class="col-sm-3"><button class="btn btn-info" id="reset">リセット</button></div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <span class="label">コッホ曲線ループ回数</span>
+        <select data-bind="options: kochLoops,
+                       value: selectedKochLoops,
+                       valueAllowUnset: true"></select>
+      </div>
+      <div class="col-sm-4">
+        <span class="label">樹木曲線ループ回数</span>
+        <select data-bind="options: treeLoops,
+                       value: selectedTreeLoops,
+                       valueAllowUnset: true"></select>
+      </div>
+      <div class="col-sm-4">
+        <span class="label">ドラゴン曲線ループ回数</span>
+        <select data-bind="options: dragonLoops,
+                       value: selectedDragonLoops,
+                       valueAllowUnset: true"></select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-4">
+        <span class="label">枝の広がり</span><br>
+        <select data-bind="options: branchRatio,
+                       value: selectedBranchRatio,
+                       valueAllowUnset: true"></select>
+      </div>
+    </div>
+
+
   </div>
   <div class="col-sm-6">
+    <p>d3.js + svg で、　フラクタル図形を描いてみました。</p>
+
+    <p>ループ回数の設定には、　knockout.js を利用しています。</p>
+
+    <p>参考にさせてもらったのは
+      <a href="http://codezine.jp/article/detail/73">
+        CodeZineの「再帰プログラムによるフラクタル図形の描画」</a>です。
+    </p>
+
+    <p>javaで書かれていたので、d3.js + knockout.jsで使えるように JavaScript に書き換えています。</p>
+
+    <p>試してみてください。</p>
+
+    <p>フラクタル図形を描くのに"タートル・グラフィックス"といのがあるそうで（..昔聞いたような...）</p>
+    <p>logoという言語（若い時に見た雑誌に特集があった...）を使って描けるという。
+      そのころはlogoの勉強はしませんでしたが。少しかじってみようかと思います。</p>
+
   </div>	
 </div>
 
-- - -
-
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="{{site.url}}/js/knockout-3.1.0.js" charset="utf-8"></script>
 <script>
 
 function Point(x, y){
@@ -39,16 +94,41 @@ var svg =  d3.select("#svg")
                       .attr("height", 500)
                       .style("background",bgColor);
 
-d3.select("#koch").on("click",function(){
-  
-  var P = new Point(100, 160);
-  var Q = new Point(400, 160);
-  var R = new Point(250, 420);
-  drawKoch(P,Q,4);
-  drawKoch(Q,R,4);
-  drawKoch(R,P,4);
 
-  function drawKoch(a,b,n){
+d3.select("#reset").on("click",function(){
+  svg.selectAll("line").remove();
+});                      
+
+/**
+  ApplicationViewModel
+**/
+function AppViewModel() {
+  
+  // Non-editable catalog data - would come from the server
+  kochLoops = ['0', '1', '2', '3', '4'];
+  selectedKochLoops = ko.observable('3');
+  treeLoops = ['3', '4', '5', '6', '7'];
+  selectedTreeLoops = ko.observable('3');
+  branchRatio = ['0.7', '0.8', '0.9'];
+  selectedBranchRatio = ko.observable('0.7');
+
+  dragonLoops = ['0', '1', '2', '3', '4','5', '6', '7', '8', '9', '10','12','15'];
+  selectedDragonLoops = ko.observable('8');
+
+
+  /*************************************
+    click event 
+  **************************************/
+  // コッホ曲線
+  self.koch = function() {
+    var P = new Point(100, 160);
+    var Q = new Point(400, 160);
+    var R = new Point(250, 420);
+    drawKoch(P,Q,selectedKochLoops());
+    drawKoch(Q,R,selectedKochLoops());
+    drawKoch(R,P,selectedKochLoops());
+
+    function drawKoch(a,b,n){
       //メソッド内部で使用する３点を生成します
       var c=new Point(Math.floor((2*a.x+b.x)/3), Math.floor((2*a.y+b.y)/3));
       var d=new Point(Math.floor((a.x+2*b.x)/3), Math.floor((a.y+2*b.y)/3));
@@ -109,27 +189,24 @@ d3.select("#koch").on("click",function(){
          drawKoch(d,b,n-1);    //点Dから点Bへ
       };
    };     
-});                      
 
-d3.select("#tree").on("click",function(){
-  //３対の点を指定します
-  var P=new Point(100,400);
-  var Q=new Point(100,100);
-  var R=new Point(250,400);
-  var S=new Point(250,100);
-  var T=new Point(400,400);
-  var U=new Point(400,100);
 
-  //それぞれの対をなす２点間に樹木曲線を描きます
-  drawTree(P,Q,3);
-  drawTree(R,S,4);
-  drawTree(T,U,6);
+  };
 
-  //樹木曲線を描くメソッド
-  function drawTree(a,b,n){
+  // 樹木曲線
+  self.tree = function() {
+    //３対の点を指定します
+    var P=new Point(250,400);
+    var Q=new Point(250,100);
+
+    //それぞれの対をなす２点間に樹木曲線を描きます
+    drawTree(P,Q,selectedTreeLoops());
+
+    //樹木曲線を描くメソッド
+    function drawTree(a,b,n){
 
       var STEM_RATIO=0.25;
-      var BRANCH_RATIO=0.7;
+      var BRANCH_RATIO=selectedBranchRatio();
       
       var c=new Point(0,0);
       var d=new Point(0,0);
@@ -195,18 +272,21 @@ d3.select("#tree").on("click",function(){
          drawTree(c,d,n-1);   //左の枝（点Cから点Dへ）
          drawTree(c,e,n-1);   //右の枝（点Cから点Eへ）        
       }
-   } 
-});                      
-d3.select("#dragon").on("click",function(){
-  //出発点となる一対の点を指定します
-  var P=new Point(170,140);
-  var Q=new Point(400,350);
+   };
 
-  //対となる二点の間にドラゴン曲線を描きます
-  drawDragon(P,Q,10);
+  };
+
+  // ドラゴン曲線
+  self.dragon = function() {
+    //出発点となる一対の点を指定します
+    var P=new Point(170,140);
+    var Q=new Point(400,350);
+
+    //対となる二点の間にドラゴン曲線を描きます
+    drawDragon(P,Q,selectedDragonLoops());
  
- //ドラゴン曲線を描くメソッド
- function drawDragon(a,b,n){
+    //ドラゴン曲線を描くメソッド
+    function drawDragon(a,b,n){
 
       var c=new Point(0,0);
 
@@ -240,11 +320,12 @@ d3.select("#dragon").on("click",function(){
          drawDragon(b,c,n-1);    //点Bから点Cへ
       }
    }   
-});                      
 
-d3.select("#reset").on("click",function(){
-  svg.selectAll("line").remove();
-});                      
+  };
 
+};
+
+// Activates knockout.js
+ko.applyBindings(new AppViewModel());
 
 </script>
