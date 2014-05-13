@@ -3,5 +3,5 @@ markdown: redcarpet
 pygments: true
 encoding: utf-8
 domain: http://koyamatch.com
-paginate: 5
+paginate: 8
 timezone: Asia/Tokyo
