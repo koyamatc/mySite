@@ -28,7 +28,7 @@ categories: post composition
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
   var CPS = 2; // CPS stands for "complex plane square". That is, we are examining a 2*CPS by 2*CPS square region of the complex plane such that this square (or box) is centered at the complex plane's origin.
-  var MAX_ITERATIONS = 600; // Increase to improve detection of complex c values that belong to the Mandelbrot set.
+  var MAX_ITERATIONS = 1000; // Increase to improve detection of complex c values that belong to the Mandelbrot set.
   var DELTA = 0.008; // Decreasing this value increases the number of "pixels" on the canvas, thereby increasing the size of the rendering but without losing image resolution.
 
   function Complex(x, y) {
@@ -60,7 +60,7 @@ categories: post composition
     return new Complex(x, y);
   } // square
   
-  // svg area 
+  // svg area   
    var width = 500;
     var height = 500;
     var vbox_x = 500;
@@ -96,6 +96,9 @@ categories: post composition
   var container = svg01.append("g")
                   .call(zoom);
 
+  var colorScale = d3.scale.category10();
+//  var domain = [0,1,2,3,4,5,6,7,8,9];
+
   var boxX = [];            
   var boxY = [];            
 
@@ -112,6 +115,13 @@ categories: post composition
           for (var iterationCount = 1; iterationCount <= MAX_ITERATIONS; iterationCount++) {
             z = c.add( z.square() ); // Performs Zn+1 = (Zn)^2 + c          
             if (z.modulus() > 2) {
+              container.append("rect")
+                .attr("x",function(){return linearScaleX(Re)})
+                .attr("y",function(){return linearScaleY(Im)})
+                .attr("width",3)
+                .attr("height",3)
+                .style("fill",colorScale(iterationCount % 10));
+
               continue next_c_value; // The complex c value is not part of the Mandelbrot set, so immediately check the next one.
             }; // if
           }; // for
