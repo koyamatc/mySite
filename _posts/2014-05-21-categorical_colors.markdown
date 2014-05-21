@@ -2,7 +2,7 @@
 title: 投稿記事
 layout: post
 postTitle: Categorical Colors
-categories: post composition
+categories: post d3js
 ---
 
 <div id="svg"></div>
