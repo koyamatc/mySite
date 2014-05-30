@@ -13,7 +13,7 @@ var me = [
 			["続酒とバラ肉","../sake_bara/","友人のブログ"]];
 var maps = [
 				["Google Map","gmap/",""],
-				["D3.js","../d3js/","Data-Driven Documens"],
+				["D3.js","../d3/","Data-Driven Documens"],
 				["","",""],
 				["Visualizing Data","vd/",""],
 				["Mapbox","",""],
