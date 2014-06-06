@@ -8,10 +8,21 @@ categories: post composition
 <div id="svg"></div>
 <button class="btn btn-info" id="run">Run</button>
 <button class="btn btn-info" id="reset">Reset</button>
-
+<span class="label">回数</span>
+<select data-bind="options: counts,
+                   value: selectedCounts,
+                   valueAllowUnset: true">
+</select>
 
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="{{site.url}}/js/knockout-3.1.0.js" charset="utf-8"></script>
 <script>
+function AppViewModel() {
+  
+  // knockout select 
+  counts = [59,127,197,241,307];
+  selectedCounts = ko.observable(59);
+
   // Point Object
   function Point(x, y){
     this.x = x;
@@ -25,7 +36,7 @@ categories: post composition
   var dot_radius =100;
 
   var ticks = [];
-    for (var i=1;i<=127; i++){
+  for (var i=1;i<= d3.max(counts); i++){
       ticks.push(i);
   };
 
@@ -57,10 +68,21 @@ categories: post composition
       .attr("r",function(){return 0;})
       .attr("id",function(d,i){return "c"+i;})
       .attr("opacity",0.0)
-      .style("fill","gold");   
+      .style("fill","gold");
+  var text = svg.append("text")
+        .attr("x",450)
+        .attr("y",30)
+        .attr("stroke","white")
+        .text("0")
+        .attr("font-size","20px")
+        .style("fill","white");        
 
   // Reset button clicked   
   d3.select("#reset").on("click",function(){
+    svg.selectAll("text")
+        .transition()
+        .text("0");
+
     svg.selectAll("circle")
       .transition()
       .duration(1000)
@@ -74,9 +96,13 @@ categories: post composition
 
   // Run button clicked
   d3.select("#run").on("click",function(){
+    ticks = [];
+    for (var i=1;i<=parent.selectedCounts(); i++){
+      ticks.push(i);
+    };
  
 
-    for (var i = 1; i <= 127; i++) {
+    for (var i = 1; i <= parent.selectedCounts(); i++) {
 
       make(i,250); // create points for circles
       var delay = 1000 * i; // create delay time
@@ -91,6 +117,11 @@ categories: post composition
 
       for (l=0;l<points.length;l++){
         var el = d3.select("#c"+l);
+
+        text.transition()
+          .delay(delay)
+          .ease("linear")
+          .text(l+1);
 
         el.transition()
           .delay(delay)
@@ -185,5 +216,8 @@ categories: post composition
       }
       return n;
   }
+};
 
+// Activates knockout.js
+ko.applyBindings(new AppViewModel());
 </script>
