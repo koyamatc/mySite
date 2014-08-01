@@ -7,7 +7,7 @@ var menus = ["Programming",
 var me = [
 			["Profile","profile.html",""],
 			["Math","math/index.html","数学の復習です"],
-			["","",""],
+			["Statistics","stats/index.html","統計の学習です"],
 			["","",""],
 			["My blog","../wordpress/",""],
 			["続酒とバラ肉","../sake_bara/","友人のブログ"]];
