@@ -129,4 +129,5 @@ p,ol,li {
   stroke:#fff;
   stroke-width:2;
   fill:#fff;
+  position:absolute;
 }
