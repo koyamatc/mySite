@@ -1,0 +1,12 @@
+---
+title: 投稿記事
+layout: post
+postTitle: textPath
+categories: post composition
+---
+d3.jsでpathで指定した曲線に沿って文字列を表示してみました
+
+<img src="http://koyamatch.com/images/textPath.png">
+
+<span class="glyphicon glyphicon-arrow-right text-whtie"></span>
+[textPath　ﾍﾟｰｼﾞ]({{site.url}}/d3/svg/shapes/textPath.html)
