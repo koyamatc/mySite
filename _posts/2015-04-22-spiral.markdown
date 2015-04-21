@@ -1,0 +1,77 @@
+---
+title: 投稿記事
+layout: post
+postTitle: Spiral
+categories: post composition
+---
+d3.jsでpathで指定した曲線に沿って文字列を表示してみました
+
+<div id="svg01"></div>
+
+<button id="btn01" class="btn btn-lg btn-primary">実行</button>
+
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="{{site.url}}/js/d3draws.js" charset="utf-8"></script>
+<script src="{{site.url}}/js/jquery.js" charset="utf-8"></script>
+
+<script>
+
+  var svg01 = d3.select("#svg01")
+                .append("svg")
+                .attr("height",700)
+                .attr("width",700)
+                .style("background","#000");
+
+  var xScale01 = d3.scale.linear()
+                       .domain([-350,350])
+                       .range([0,700]);
+  var yScale01 = d3.scale.linear()
+                       .domain([350,-350])
+                       .range([0,700]); 
+
+	var line = d3.svg.line()
+      .x(function(d) { return xScale01(d.x); })
+      .y(function(d) { return yScale01(d.y); })
+      .interpolate("linear");                       
+
+ var pathData01 = [];
+
+ var r;
+ var B;
+	B=1.12;
+ 	for (i=0;i<=24*pi;i=i+0.1){
+	
+		d3.selectAll(".spiral").remove();
+	
+ 		r = Math.pow(B,i);
+  	pathData01.push(new Point(r*Math.cos(i),r*Math.sin(i)));
+
+	}
+	console.log(pathData01);
+   svg01.selectAll("path")
+      .data(pathData01)
+    .enter().append("path")
+      .attr("stroke", "yellow")
+      .attr("stroke-width",3)
+      .attr("fill", "none")
+      .attr("class","spiral")
+      .attr("d", line);
+ 
+　d3.select("#btn01").on("click",function(){
+	for (j=0;j<=50;j++){
+	pathData01=[];
+	B= B + 0.005;	
+	for (i=0;i<=24*pi;i=i+0.1){
+ 		r = Math.pow(B,i);
+  	pathData01.push(new Point(r*Math.cos(i),r*Math.sin(i)));
+	}
+ 	if (B>1.14){B=1.12};	
+  d3.selectAll("path").remove();
+  drawPath(svg01,pathData01,{"stroke":"lime"},xScale01,yScale01);
+	}
+})
+
+
+</script>
