@@ -9,6 +9,7 @@ d3.jsでpathで指定した曲線に沿って文字列を表示してみまし�
 <div id="svg01"></div>
 
 <button id="btn01" class="btn btn-lg btn-primary">実行</button>
+<button id="btn02" class="btn btn-lg btn-primary">stop</button>
 
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
@@ -17,6 +18,8 @@ d3.jsでpathで指定した曲線に沿って文字列を表示してみまし�
 <script src="{{site.url}}/js/jquery.js" charset="utf-8"></script>
 
 <script>
+
+  color = d3.scale.category20();
 
   var svg01 = d3.select("#svg01")
                 .append("svg")
@@ -38,40 +41,59 @@ d3.jsでpathで指定した曲線に沿って文字列を表示してみまし�
 
  var pathData01 = [];
 
+ var stopflag;
  var r;
  var B;
-	B=1.12;
- 	for (i=0;i<=24*pi;i=i+0.1){
-	
-		d3.selectAll(".spiral").remove();
-	
- 		r = Math.pow(B,i);
-  	pathData01.push(new Point(r*Math.cos(i),r*Math.sin(i)));
-
-	}
-	console.log(pathData01);
-   svg01.selectAll("path")
-      .data(pathData01)
-    .enter().append("path")
-      .attr("stroke", "yellow")
-      .attr("stroke-width",3)
-      .attr("fill", "none")
-      .attr("class","spiral")
-      .attr("d", line);
+ 
+ draw();
  
 　d3.select("#btn01").on("click",function(){
-	for (j=0;j<=50;j++){
 	pathData01=[];
-	B= B + 0.005;	
+	B= 1.3;	
 	for (i=0;i<=24*pi;i=i+0.1){
  		r = Math.pow(B,i);
   	pathData01.push(new Point(r*Math.cos(i),r*Math.sin(i)));
 	}
- 	if (B>1.14){B=1.12};	
-  d3.selectAll("path").remove();
-  drawPath(svg01,pathData01,{"stroke":"lime"},xScale01,yScale01);
-	}
+   svg01.selectAll(".spiral")
+      .transition()
+      .duration(15000)
+      .ease("linear")
+      .attr("stroke", function(){
+        return color(Math.floor(Math.random()*20));
+      })
+      .attr("stroke-width",3)
+      .style("fill", function(){
+        return color(Math.floor(Math.random()*20));
+      })
+      .attr("d", line(pathData01));
+
+	
 })
 
 
+d3.select("#btn02").on("click",function(){
+  draw();
+})
+
+function draw(){
+  pathData01=[];
+  svg01.selectAll(".spiral").remove();
+  B=1.12;
+  for (i=0;i<=24*pi;i=i+0.1){
+  
+    d3.selectAll(".spiral").remove();
+  
+    r = Math.pow(B,i);
+    pathData01.push(new Point(r*Math.cos(i),r*Math.sin(i)));
+
+  }
+   svg01.append("path")
+      .attr("stroke", "yellow")
+      .attr("stroke-width",3)
+      .attr("fill", "none")
+      .attr("class","spiral")
+      .attr("d", line(pathData01));
+
+
+}
 </script>
