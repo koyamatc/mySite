@@ -1,0 +1,13 @@
+---
+title: 更新情報
+layout: post
+postTitle: d3 イベント追加
+categories: update
+---
+### D3.js の　マウス・イベントを追加しました
+
++ Mouse drag
+
++ mouse click
+
+[D3 トップページ]({{site.url}}/d3/)
