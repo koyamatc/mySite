@@ -17,9 +17,11 @@ div- {
 .item {
   height: 100px;
 }
+
 .itemxs- {
   height: 50px;
 }
+
 
 div #logo {
   height: 100px;
@@ -27,6 +29,8 @@ div #logo {
 a {
   height:95px;
 }
+
+/* ** 2015/06/05 delete
 .btn0 {
   background-color: pink;
 }
@@ -46,11 +50,22 @@ a {
   background-color: #EBCC44;
 }
 
+*/
+
 .btn0, .btn1, .btn2,
 .btn3, .btn4, .btn5 
 {
   font-size: 1.5em;
   font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  border-radius: 45%; 
+}
+.btn0:hover, .btn1:hover, .btn2:hover,
+.btn3:hover, .btn4:hover, .btn5:hover 
+{
+  background-color: gold;
+  box-shadow: inset 0.5em -1.5em 3em 0.5em darkgreen;; 
 }
 
 .menu-row {
@@ -144,6 +159,15 @@ letter-spacing: -1px;
 }
 .text-white {
   color: #fff;
+}
+.text-red {
+  color: #f00;
+}
+.text-yellow {
+  color: #ff0;
+}
+.text-pink {
+  color: pink;
 }
 #tlt {
   color: yellow;

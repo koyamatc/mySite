@@ -109,14 +109,14 @@ function setItem(arr){
 		$(itemxs).empty();
 
 		var html = '<a class="btn btn-lg btn-block ' + btn + '" href="' + arr[i][1] + '">' 
-		+ arr[i][0] +'<h5 class="text-black hidden-xs">' + arr[i][2] + '</h5></a>'
+		+ arr[i][0] +'<h5 class="text-pink hidden-xs">' + arr[i][2] + '</h5></a>'
 		
 		if (arr[i][0].length > 0) {
 
 			$(item).append(html)
 					.animate({opacity:0.8},"slow");
 			$(itemxs).append(html)
-					.animate({opacity:0.8},"slow");			
+					.animate({opacity:0.8},"slow");	
 		};
 	};
 };
