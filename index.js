@@ -37,7 +37,7 @@ var jslibs = [
 				["lettering.js","../letteringjs/",""],
 				["underscore.js","../underscoreJS/",""],
 				["jsRender.js","../jsRender/","JavaScript template"],
-				["benefits","../benefits/",""]
+				["React.js","../react/","Facebookが開発したﾌﾚｰﾑﾜｰｸ"]
 		  	  ];
 
 var tools = [
