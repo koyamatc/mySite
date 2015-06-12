@@ -4,7 +4,7 @@ div #logo {
   height: 100px;
 }
 
-#logo,#logoComponent {
+#logo {
   font-size: 50px;
   text-shadow: 4px 4px 0px #939393,
                6px 6px 0px #1c1c1c;
@@ -13,7 +13,7 @@ div #logo {
 }
 
 #logo span {
-display: inline-block;
+//display: inline-block;
 position: relative;
 letter-spacing: -1px;
 -webkit-transition: all 0.2s ease-out;
