@@ -191,3 +191,7 @@ letter-spacing: -1px;
 footer a {
   color: yellow;
 }
+
+.card {
+  position:absolute;
+}
