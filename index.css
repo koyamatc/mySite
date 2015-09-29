@@ -195,3 +195,7 @@ footer a {
 .card {
   position:absolute;
 }
+.cardOrder51 {
+ position:relative;
+ z-index : 51;
+}
