@@ -6,67 +6,72 @@ categories: post jquery
 ---
 
 -----
-<div class="boxes">
-	<div id="box1" class="box">FRONT</div>
-	<div id="box2" class="box clearfix">BACK</div>
+<section class="box-container">
+<div id="card">
+	<figure id="card1" class="front">FRONT</figure>
+	<figure id="card2" class="back">BACK</figure>
 </div>
-<br><br><br><br><br><br><br><br>
+</section>
+
 <div>
 	<div>ボックスをクリックしてください</div>
 </div>
 
 <em>-- HTML --</em>
 <pre>
-&lt;div class="boxes"&gt;
-	&lt;div id="box1" class="box"&gt;FRONT&lt;/div&gt;
-	&lt;div id="box2" class="box"&gt;BACK&lt;/div&gt;
-&lt;/div&gt;
+&lt;section class="box-container">
+&lt;div id="card">
+	&lt;figure id="card1" class="front">FRONT&lt;/figure>
+	&lt;figure id="card2" class="back">BACK&lt;/figure>
+&lt;/div>
+&lt;/section>
 </pre>
 <em>-- Javascript --</em>
 <pre>
-$('.boxes').css({
-                 "postion":"relative",
+$(".box-container").css({
+                         "height": "200px",
+                         "width": "400px",
+                         "postion":"relative",
+                         "perspective":"800px"
+                       });
+$('#card').css({
+                "height":"100%",
+                "width":"100%",
+                "position":"absolute",
+                "transform-style": "preserve-3d",
+              });
+$("figure").css({
+                 "display": "block",
+                 "position": "absolute",
+                 "width": "100%",
+                 "height": "100%",
+                 "backface-visibility": "hidden",
+                });
+$('.front').css({
+                 "background":"gold",
                });
-$('.box').css({
-               "height":"200px",
-               "width":"400px",
-               "display":"inline-block",
-               "position":"absolute"
-              });
-$('#box1').css({
-                "background":"gold",
-                "z-Index":"2"
-              });
-$('#box2').css({
+$('.back').css({
                 "background":"lime",
                 "transform":"rotateY(180deg)",
-                "z-Index":"1",
-                "clear":"none"
                });
-
-$("#box1").on("click",function(){
-		$("#box1").css({
-                    "transform":"rotateY(180deg)",
-                    "z-Index":"1"	,
-                    "transition-duration":"1s"
+$("#card1").on("click",function(){
+		$("figure").css({
+                     "transition": "transform 1s"
                    });
-		$("#box2").css({
-                    "transform":"rotateY(0deg)",
-                    "z-Index":"2"	,
-                    "transition-duration":"1s"
+		$("#card1").css({
+                     "transform":"rotateY(-180deg)",
+                   });
+		$("#card2").css({
+                     "transform":"rotateY(0deg)",
                     });
-	});
-$("#box2").on("click",function(){
-		$("#box1").css({
-                    "transform":"rotateY(0deg)",
-                    "z-Index":"2",
-                    "transition-duration":"1s"
+});
+$("#card2").on("click",function(){
+		$("#card1").css({
+                     "transform":"rotateY(0deg)",
                    });
-		$("#box2").css({
-                    "transform":"rotateY(180deg)",
-                    "z-Index":"1"	,
-                    "transition-duration":"1s"
-                  });
+		$("#card2").css({
+                     "transform":"rotateY(180deg)",
+                   });
 	});
 </pre>
 
@@ -83,49 +88,55 @@ $('pre').addClass('prettyprint');
 		             "font-size":"1.1em",
 		                "border":"0px"}
 		          );
-$('.boxes').css({
-								"postion":"relative",
+
+$(".box-container").css({
+	  "height": "200px",
+	  "width": "400px",
+	  "postion":"relative",
+	  "perspective":"800px"
+})	
+
+$('#card').css({
+								"height":"100%",
+								"width":"100%",
+								"position":"absolute",
+								"transform-style": "preserve-3d",
 							});
 
-$('.box').css({
-								"height":"200px",
-								"width":"400px",
-								"display":"inline-block",
-								"position":"absolute"
-							});
-$('#box1').css({
+$("figure").css({
+	               "display": "block",
+                 "position": "absolute",
+                 "width": "100%",
+                 "height": "100%",
+                 "backface-visibility": "hidden",
+});
+
+$('.front').css({
 								"background":"gold",
-								"z-Index":"2"
 							});
-$('#box2').css({
+$('.back').css({
 								"background":"lime",
 								"transform":"rotateY(180deg)",
-								"z-Index":"1",
-								"clear":"none"
 							});
 
-$("#box1").on("click",function(){
-		$("#box1").css({
-										"transform":"rotateY(180deg)",
-										"z-Index":"1"	,
-										"transition-duration":"1s"	
-									});
-		$("#box2").css({
+$("#card1").on("click",function(){
+		$("figure").css({
+  									 "transition": "transform 1s"
+							     })
+
+		$("#card1").css({
+										"transform":"rotateY(-180deg)",
+										});
+		$("#card2").css({
 										"transform":"rotateY(0deg)",
-										"z-Index":"2"	,
-										"transition-duration":"1s"	
 									});
 	});
-$("#box2").on("click",function(){
-		$("#box1").css({
+$("#card2").on("click",function(){
+		$("#card1").css({
 										"transform":"rotateY(0deg)",
-										"z-Index":"2",
-										"transition-duration":"1s"	
 									});
-		$("#box2").css({
+		$("#card2").css({
 										"transform":"rotateY(180deg)",
-										"z-Index":"1"	,
-										"transition-duration":"1s"	
 									});
 	});
 
