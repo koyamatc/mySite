@@ -28,7 +28,7 @@ var boards = [
 				["Arduino","####2",""]];
 var jslibs = [
 				["jQuery","../jqlesson/jqlesson.html",""],
-				["jQuery UI","../jqui/jqui01.html",""],
+				["jQuery UI","../jqui/index.html",""],
 				["jQuery mobile","../lettering/",""],
 				["Bootstrap","../bootstrap/",""],
 				["knockout.js","../ko/","Dynamic JavaScript UI"],
