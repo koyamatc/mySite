@@ -28,8 +28,8 @@ var boards = [
 				["Arduino","####2",""]];
 var jslibs = [
 				["jQuery","../jqlesson/jqlesson.html",""],
-				["jQuery UI","../jqui/index.html",""],
-				["jQuery mobile","../lettering/",""],
+				["jQuery UI","../jqui/",""],
+				["jQuery mobile","../jqmobile/",""],
 				["Bootstrap","../bootstrap/",""],
 				["knockout.js","../ko/","Dynamic JavaScript UI"],
 				["Processing.js","../processingJS/","ProcessingをJavaScriptで"],
