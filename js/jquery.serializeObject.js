@@ -13,8 +13,7 @@
 //
 
 (function($){
-	$.fn.extend({
-		serializeObject: function () {
+	$.fn.serializeObject = function () {
 		"use strict";
 
 		var result = {};
@@ -38,5 +37,4 @@
 		$.each(this.serializeArray(), extend);
 		return result;
 	}
-});
 })(jQuery);

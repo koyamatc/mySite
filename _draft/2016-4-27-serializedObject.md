@@ -70,8 +70,10 @@ Uncaught TypeError: $(...).serializeObject is not a function
 //  $("#logo").lettering();
 
    $('form').submit(function() {
-
-        $('#result').text(JSON.stringify($('form').serializeObject()));
+    console.log("aaaaaaaaaaaa");
+        var data = JSON.stringify($('form'));//.serializeObject();
+        console.log(data);
+        $('#result').text(data);
         return false;
     });
 
