@@ -13,7 +13,7 @@ categories: post d3
   </div>
 </div>
 <div class="row">
-    <div class="col-xs-5 col-ms-2">
+    <div class="col-xs-5 col-sm-3 col-md-2">
         <span class="label label-info">Graticules(経緯線)</span>
     </div>
     <div class="col-xs-2">  
