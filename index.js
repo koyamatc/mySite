@@ -46,7 +46,7 @@ var tools = [
 	 		["","",""],
 			["","",""],
 			["","",""],
-			["","",""],
+			["Khan Academy","https://www.khanacademy.org/",""],
 			["MDN","https://developer.mozilla.org/ja/",""],
 			["ドットインストール","http://dotinstall.com/","３分間学習サイト"]
 		];
