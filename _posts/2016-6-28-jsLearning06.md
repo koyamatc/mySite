@@ -901,7 +901,7 @@ function sketchProc7(processing) {
     };
   
     Mover.prototype.applyForce = function(force) {
-        var f = PVector.div(force, this.mass);
+        var f = processing.PVector.div(force, this.mass);
         this.acceleration.add(f);
     };
   
