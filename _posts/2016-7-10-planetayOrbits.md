@@ -1,7 +1,7 @@
 ---
 title: 投稿記事
 layout: post
-postTitle: ProcessingJS 勉強 - Forces
+postTitle: Ellipse(楕円)-Eccentricity
 categories: post processingJS
 ---
 
@@ -41,32 +41,40 @@ var $window = $(window)
 		            );
   $('code').css({"font-size":"1.05em","color":"#f00"});
 
-var height = 800,
-    width = 800;
+var height = 900,
+    width = 900;
+var scale = 2;    
 
 function sketchProc1(processing) {
- 
-    var Mover = function(x,y,e,a) {
-        // Set mass equal to 1 for simplicity
+    processing.angleMode = "degrees";
+    var Orbit = function(name,x,y,e,a,rot) {
+        this.name = name;
         this.eccentricity = e;
         this.x = x;
         this.y = y;
         this.semiAxis = a;
+        this.rot = rot;
     };
 
-    Mover.prototype.display = function() {
+    Orbit.prototype.display = function() {
         processing.stroke(255,255,255);
-        processing.strokeWeight(2);
+        processing.strokeWeight(1);
         processing.fill(255, 255, 255);
         processing.pushMatrix();
+        processing.scale(scale);
         var c = this.eccentricty * this.semiAxis;
-        processing.translate(c,height/2)
-        for (var i=0;i<360;i++){
-            var r = this.semiAxis*(1-this.eccentricity^2)/(1+this.eccentricity*processing.cos(i));
+        processing.translate(width/2*scale,height/2*scale);
+        processing.rotate(this.rot-90);
+        for (var i=0;i<360;i=i+0.05){
+            var r = this.semiAxis*(1-Math.pow(this.eccentricity,2))/(1+this.eccentricity*processing.cos(i));
+            if(i==0){console.log(r);};
             var x = r*processing.cos(i);
-            var y = r*processing.sin(i); 
+            var y = r*processing.sin(i);
+            x = processing.map(x,0,14000,0,width); 
+            y = processing.map(y,0,14000,0,height);
             processing.point(x,y);
         }
+        processing.ellipse(c,0,3,3);
         processing.popMatrix();
     };
 
@@ -75,13 +83,28 @@ function sketchProc1(processing) {
         // canvas size 
         processing.size(width,height);
         processing.background(66, 66, 66);
+        for (var i = 0; i < orbits.length; i++) {
+          orbits[i].display();
+        };
+
     };
 
-    var m = new Mover(0,0,40/60,100); 
+    var orbits = [];
+    orbits.push(new Orbit("Mercury",0,0,0.205,57.9,77.45)); 
+    orbits.push(new Orbit("Venus",0,0,0.007,108.2,131.6)); 
+    orbits.push(new Orbit("Earth",0,0,0.017,149.6,0)); 
+    orbits.push(new Orbit("Mars",0,0,0.094,227.9,-23.94)); 
+    orbits.push(new Orbit("Jupiter",0,0,0.049,778.6,14.73)); 
+    orbits.push(new Orbit("Saturn",0,0,0.057,1433.5,92.6)); 
+    orbits.push(new Orbit("Uranus",0,0,0.046,2872.5,170.95)); 
+    orbits.push(new Orbit("Nepture",0,0,0.011,4495.1,44.96)); 
+    orbits.push(new Orbit("Pluto",0,0,0.244,5906.4,224.07)); 
 
     processing.draw = function() {
-    
-        m.display();
+
+        for (var i = 0; i < orbits.length; i++) {
+     //     orbits[i].display();
+        };
     }; 
 };  
 
