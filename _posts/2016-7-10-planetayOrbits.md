@@ -1,33 +1,43 @@
 ---
 title: 投稿記事
 layout: post
-postTitle: Ellipse(楕円)-Eccentricity
+postTitle: 太陽系惑星軌道
 categories: post processingJS
 ---
 
 -----
-## Khan Academy での学習
-
-## Forces
-
-
-学習元 [Forces](https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-forces/a/newtons-laws-of-motion)
+## 太陽系の惑星＋冥王星の軌道
 
 <div class="row">
-   <div class="col-xs-4">
+   <div class="col-xs-6">
        <canvas id="canvas1"></canvas>
+       <div class="tz-container">
+          <em>スケール  </em>
+          <div id="scale" class="sl"></div>
+          <div id="scale-value" class="sl"></div>
+       </div>  
    </div>
-   <div class="col-xs-8">
+   <div class="col-xs-6">
       <pre>
 </pre> 
    </div>
 </div>
 
 <br>
+<div class="row">
+   <div class="col-xs-6">
+       <canvas id="canvas2"></canvas>
+   </div>
+   <div class="col-xs-6">
+      <pre>
+</pre> 
+   </div>
+</div>
 
 
 
 <script src="//code.jquery.com/jquery-1.11.3.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="{{site.url}}/js/processing.min.js" charset="utf-8"></script>
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sons-of-obsidian"></script>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
@@ -41,11 +51,28 @@ var $window = $(window)
 		            );
   $('code').css({"font-size":"1.05em","color":"#f00"});
 
-var height = 900,
-    width = 900;
-var scale = 2;    
 
 function sketchProc1(processing) {
+
+var height = 900,
+    width = 900;
+var scale = 0.1;    
+$(".sl").css({"display":"inline-block"});
+
+$("#scale").slider({min:0.005, max: 2, value: 0.005, step: 0.002, animate: "fast"})
+          .css({"width":"400px"});
+
+$( "#scale-value" ).html( $( "#scale" ).slider("option", "value") );
+// sliderのchangeイベントの処理
+$( "#scale" ).on( "slidechange", function( event, ui ) {
+    $( "#scale-value" ).html(ui.value);
+    scale = ui.value;
+    processing.background(66, 66, 66);
+    for (var i = 0; i < orbits.length; i++) {
+          orbits[i].display();
+    };
+
+} );
     processing.angleMode = "degrees";
     var Orbit = function(name,x,y,e,a,rot) {
         this.name = name;
@@ -63,18 +90,16 @@ function sketchProc1(processing) {
         processing.pushMatrix();
         processing.scale(scale);
         var c = this.eccentricty * this.semiAxis;
-        processing.translate(width/2*scale,height/2*scale);
+        processing.translate(width/(2*scale),height/(2*scale));
         processing.rotate(this.rot-90);
         for (var i=0;i<360;i=i+0.05){
             var r = this.semiAxis*(1-Math.pow(this.eccentricity,2))/(1+this.eccentricity*processing.cos(i));
-            if(i==0){console.log(r);};
             var x = r*processing.cos(i);
             var y = r*processing.sin(i);
-            x = processing.map(x,0,14000,0,width); 
-            y = processing.map(y,0,14000,0,height);
             processing.point(x,y);
         }
-        processing.ellipse(c,0,3,3);
+        processing.fill(255,255,0);
+        processing.ellipse(c,0,15,15);
         processing.popMatrix();
     };
 
@@ -82,11 +107,11 @@ function sketchProc1(processing) {
     processing.setup = function(){
         // canvas size 
         processing.size(width,height);
+        
         processing.background(66, 66, 66);
         for (var i = 0; i < orbits.length; i++) {
           orbits[i].display();
         };
-
     };
 
     var orbits = [];
@@ -102,16 +127,70 @@ function sketchProc1(processing) {
 
     processing.draw = function() {
 
-        for (var i = 0; i < orbits.length; i++) {
-     //     orbits[i].display();
-        };
+    }; 
+};  
+
+function sketchProc2(processing) {
+
+    var height = 400,
+        width = 500;
+    processing.angleMode = "degrees";
+    
+    var Orbit = function(name,x,y,e,a,rot) {
+        this.name = name;
+        this.eccentricity = e;
+        this.x = x;
+        this.y = y;
+        this.semiAxis = a;
+        this.rot = rot;
+    };
+
+    Orbit.prototype.display = function() {
+        processing.stroke(255,255,255);
+        processing.strokeWeight(1);
+        processing.fill(255, 255, 255);
+        processing.pushMatrix();
+        var c = this.eccentricty * this.semiAxis;
+        console.log(this.eccentricty);
+        processing.translate(width/2-c,height/2);
+        for (var i=0;i<360;i=i+0.05){
+            var r = this.semiAxis*(1-Math.pow(this.eccentricity,2))/(1+this.eccentricity*processing.cos(i));
+            var x = r*processing.cos(i);
+            var y = r*processing.sin(i);
+            processing.point(x,y);
+        }
+        processing.fill(255,255,0);
+        processing.ellipse(c,0,15,15);
+        processing.ellipse(-1*c,0,30,15);
+        processing.popMatrix();
+    };
+
+    var orbits = new Orbit("Ellipse",0,0,0.5,150,0);
+    //orbits.push(new Orbit("Ellipse",0,0,0.5,150,0)); 
+
+    // setup
+    processing.setup = function(){
+        // canvas size 
+        processing.size(width,height);
+        
+        processing.background(66, 66, 66);
+     //   for (var i = 0; i < orbits.length; i++) {
+          orbits.display();
+       // };
+    };
+
+
+    processing.draw = function() {
+
     }; 
 };  
 
 var canvas1 = document.getElementById("canvas1");
+var canvas2 = document.getElementById("canvas2");
 
 // attaching the sketchProc function to the canvas
 var p1 = new Processing(canvas1, sketchProc1);
+var p2 = new Processing(canvas2, sketchProc2);
 
 // p.exit(); to detach it
 $("#reset2").on("click",function(){
