@@ -68,7 +68,7 @@ categories: post bootstrap
 HTML5では、　&lt;b>と&lt;i>を使用できます
 </blockquote>
 
-<script src="{{site.url&gt;}}/js/jquery.js"></script>
+<script src="{{site.url}}/js/jquery.js"></script>
 <script src="{{site.url}}/assets/googlecodeprettify/prettify.js"></script>
 
 <script type="text/javascript">

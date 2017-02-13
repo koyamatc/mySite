@@ -74,11 +74,6 @@ p,ol,li {
   background-color: #000;
   text-shadow:#000 0 1px;
 }
-
-pre .liquid {
-  background-color: #333;
-  color:#fff;
-}
 /*****************************************************************************/
 /*
 /* Posts
@@ -134,5 +129,4 @@ pre .liquid {
   stroke:#fff;
   stroke-width:2;
   fill:#fff;
-  position:absolute;
 }

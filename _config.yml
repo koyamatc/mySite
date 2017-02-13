@@ -1,7 +1,7 @@
 name: koyamatch.com
-markdown: redcarpet
-pygments: true
+highlighter: pygments
 encoding: utf-8
 domain: http://koyamatch.com
 paginate: 8
 timezone: Asia/Tokyo
+gems: [jekyll-paginate]

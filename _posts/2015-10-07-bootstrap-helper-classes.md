@@ -1,7 +1,7 @@
 ---
 title: 投稿記事
 layout: post
-postTitle: Bootstrap helper classes;
+postTitle: Bootstrap helper classes
 categories: post bootstrap
 ---
 
@@ -45,13 +45,13 @@ categories: post bootstrap
 </pre>
 
 <h3>Image replacement</h3>
-要素のテキスト・コンテントをバックグラウンド・イメージで置き換える
+<p>要素のテキスト・コンテントをバックグラウンド・イメージで置き換える</p>
 <h1 class="text-hide">Custom heading</h1>
 <pre>
 &lt;h1 class="text-hide">Custom heading&lt;/h1>
 </pre>
 
-<script src="{{site.url&gt;}}/js/jquery.js"></script>
+<script src="{{site.url}}/js/jquery.js"></script>
 <script src="{{site.url}}/assets/googlecodeprettify/prettify.js"></script>
 
 <script type="text/javascript">
